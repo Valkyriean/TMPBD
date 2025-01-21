@@ -76,7 +76,6 @@ def train(model, train_loader, optimizer, criterion, device, scaler=None, schedu
             label = F.one_hot(label, n_classes).float()
         if scaler is not None:
             with amp.autocast():
-                # Mean is important; (https://spikingjelly.readthedocs.io/zh_CN/latest/activation_based_en/conv_fashion_mnist.html)
                 # we need to average the output in the time-step dimension to get the firing rates,
                 # and then calculate the loss and accuracy by the firing rates
                 out_fr = model(frame).mean(0)
