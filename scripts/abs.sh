@@ -13,7 +13,7 @@ do
   for ((l=$start; l<=$end; l++))
   do
     # python detect.py -d mnist -t "$t" -l "$l" --nstep 10 --npara 5
-    python defence_abs.py -d gesture -t "$t" -l "$l" --algorithm abs
+    python defence_ann.py -d gesture -t "$t" -l "$l" --algorithm abs
   done
 done
 
@@ -22,7 +22,7 @@ for t in "${types[@]}"
 do
   for ((l=$start; l<=$end; l++))
   do
-    python defence_abs.py -d cifar10 -t "$t" -l "$l" --algorithm abs
+    python defence_ann.py -d cifar10 -t "$t" -l "$l" --algorithm abs
   done
 done
 
@@ -33,6 +33,6 @@ for t in "${types[@]}"
 do
   for num in "${numbers[@]}"
   do
-    python defence_abs.py -d caltech -t "$t" -l "$num" --algorithm abs
+    python defence_ann.py -d caltech -t "$t" -l "$num" --algorithm abs
   done
 done
