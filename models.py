@@ -7,7 +7,6 @@ from spikingjelly.activation_based.model.spiking_resnet import spiking_resnet50
 
 def get_model(dataname='gesture', T=16, init_tau=0.02, use_plif=False, use_max_pool=False, detach_reset=False):
     '''
-    For a given dataset, return the model according to https://github.com/fangwei123456/Parametric-Leaky-Integrate-and-Fire-Spiking-Neuron
 
     Parameters:
 
