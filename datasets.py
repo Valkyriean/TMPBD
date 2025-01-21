@@ -25,7 +25,6 @@ def get_dataset(dataset, frames_number, data_dir):
 
     elif dataset == 'cifar10':
 
-        # Split by number as in: https://github.com/fangwei123456/Parametric-Leaky-Integrate-and-Fire-Spiking-Neuron
 
         dataset = CIFAR10DVS(data_dir, data_type='frame',
                              split_by='number', frames_number=frames_number)
