@@ -143,7 +143,7 @@ def save_result(dataset, attack_type, attack_label, suspicious_neurons, suspicio
         os.makedirs(save_path)
 
     # Create if not exists a csv file, appending the new info
-    path = '{}/abs_results.csv'.format(save_path)
+    path = '{}/ann_results.csv'.format(save_path)
     header = ['Dataset', 'Attack Type', 'Model ID', 'suspicious_neurons', 'suspicious_neuron_score', 'result', 'Correctness']
 
     if not os.path.exists(path):

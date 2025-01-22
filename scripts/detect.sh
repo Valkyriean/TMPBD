@@ -13,7 +13,6 @@ foreach ($t in $types) {
 
 foreach ($t in $types) {
     for ($l = $start; $l -le $end; $l++) {
-        # python detect.py -d mnist -t $t -l $l --nstep 10 --npara 5
         python detect.py -d cifar10 -t $t -l $l
     }
 }

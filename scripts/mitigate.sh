@@ -3,10 +3,10 @@
 
 types=("static" "moving" "clean" "dynamic") 
 
-algos=("original" "self_tuning" "mmbm" "finetuning") 
+algos=("original" "self_tuning" "mmbm" "finetuning" "e2e") 
 
 start=0
-end=0
+end=9
 
 for a in "${algos[@]}"
 do
@@ -15,7 +15,6 @@ do
     for ((l=$start; l<=$end; l++))
     do
       python mitigate.py --algorithm "$a" --nsample 20 -t "$t" -l "$l"
-
     done
   done
 done
