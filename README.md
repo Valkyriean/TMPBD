@@ -38,26 +38,24 @@ This repository contains the implementation and experimental results for the pap
 Provide instructions for setting up the environment and dependencies.
 
 Example:  
-1. Clone the repository:
+1. Clone the repository and set as working directory:
+     ```bash
+    clone [Link to anonymous GitHub repository]
+    cd TMPBD
+    ```
 
 3. Create a conda environment:
     ```bash
-    conda create -n snnbd python=3.9 -y
+    conda env create -f environment.yml
     conda activate snnbd
     ```
 
-4. Install dependencies:
-    It is recommended to install cupy and torch manually instead by:
+4. Install ```spikingjelly``` package:
+    Please clone from GitHub instead of ```pip install spikingjelly``` as advised in [issue](https://github.com/fangwei123456/spikingjelly/issues/401).
     ```bash
-    conda install pytorch torchvision torchaudio pytorch-cuda=12.4 -c pytorch -c nvidia
-    conda install -c conda-forge cupy
-    ```
-
-5. Install ```spikingjelly``` package:
-    Please download from GitHub and put it in the root folder instead of ```pip install spikingjelly``` as advised in [issue](https://github.com/fangwei123456/spikingjelly/issues/401).
-    ```bash
-    cd TMPBD
     git clone https://github.com/fangwei123456/spikingjelly.git
+    mv spikingjelly spikingjelly-git
+    ln -s spikingjelly-git/spikingjelly spikingjelly 
     ```
     
    
