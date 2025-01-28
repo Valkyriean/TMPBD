@@ -40,22 +40,25 @@ Provide instructions for setting up the environment and dependencies.
 Example:  
 1. Clone the repository:
 
-2. Create a conda environment:
+3. Create a conda environment:
     ```bash
     conda create -n snnbd python=3.9 -y
     conda activate snnbd
     ```
 
-3. Install dependencies:
+4. Install dependencies:
     It is recommended to install cupy and torch manually instead by:
     ```bash
     conda install pytorch torchvision torchaudio pytorch-cuda=12.4 -c pytorch -c nvidia
     conda install -c conda-forge cupy
     ```
 
-4. Install ```spikingjelly``` package:
-    Please download from GitHub and put in root folder instead of ```pip install spikingjelly``` as advised in [issue](https://github.com/fangwei123456/spikingjelly/issues/401).
-    
+5. Install ```spikingjelly``` package:
+    Please download from GitHub and put it in the root folder instead of ```pip install spikingjelly``` as advised in [issue](https://github.com/fangwei123456/spikingjelly/issues/401).
+    ```bash
+    cd TMPBD
+    git clone https://github.com/fangwei123456/spikingjelly.git
+    ```
     
    
 ---
@@ -88,13 +91,13 @@ Example:
     ```bash
     bash scripts/imbalance.sh
     ```
-    11 models should be trained, result shows in ```experiments/detection_results.csv```.
+    Eleven models should be trained. The result is shown in ```experiments/detection_results.csv```.
 
 6. Adaptive attack experiment:
     ```bash
     bash scripts/adaptive.sh
     ```
-    6 modes should be trained, result shows in ```experiments/adaptive.csv``` and ```experiments/detection_results.csv```.
+    Six modes should be trained. The result shows in ```experiments/adaptive.csv``` and ```experiments/detection_results.csv```.
 
 ---
 
@@ -147,7 +150,7 @@ TBA
 ---
 
 ## **Acknowledgments**
-The implementation of backdoor attacks involved in this research are adopted from work [Sneaky Spikes](https://github.com/GorkaAbad/Sneaky-Spikes).
+The implementation of backdoor attacks involved in this research is adopted from work [Sneaky Spikes](https://github.com/GorkaAbad/Sneaky-Spikes).
 
 <!-- 
 ---
