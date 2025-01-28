@@ -12,11 +12,11 @@ This repository contains the implementation and experimental results for the pap
 ---
 
 ## **Features**
-- Key highlights of the project.
-- Briefly list main features, e.g.:
-  - **Novel method**: Temporal Membrane Potential Backdoor Detection (TMPBD).
-  - **Mitigation mechanism**: Neural Dendrites Suppression Backdoor Mitigation (NDSBM).
-  - Comprehensive evaluation on neuromorphic datasets.
+
+  - **Novel Backdoor Detection Defense**: Temporal Membrane Potential Backdoor Detection (TMPBD).
+  - **Novel Backdoor Mitigation Defense**: Neural Dendrites Suppression Backdoor Mitigation (NDSBM).
+  - Comprehensive evaluation on neuromorphic datasets against adopted exsiting methods.
+  - Critical imbalanced dataset and adoptive attack experiment.
 
 ---
 
