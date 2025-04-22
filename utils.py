@@ -91,7 +91,7 @@ def train(model, train_loader, optimizer, criterion, device, scaler=None, schedu
 
         label = label.argmax(1)
         train_samples += label.numel()
-        train_loss += loss.item() * label.numel()
+        train_loss += loss.detach().item() * label.numel()
         train_acc += (out_fr.argmax(1) == label).float().sum().item()
 
         functional.reset_net(model)

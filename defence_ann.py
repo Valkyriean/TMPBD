@@ -315,8 +315,8 @@ def detect_backdoor_NC(
                 optimizer.step()
 
                 # Record the loss
-                total_ce_loss += ce_loss.item()
-                total_reg_loss += reg_loss.item()
+                total_ce_loss += ce_loss.detach().item()
+                total_reg_loss += reg_loss.detach().item()
                 batch_count += 1
 
             # You can clamp the trigger here

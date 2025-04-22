@@ -330,7 +330,7 @@ def clamping(dataset, model,atkmodel, train_loader,clean_test_loader,poisoned_te
             loss.backward(retain_graph=True)
             optimizer.step()
 
-            total_loss += loss.item()
+            total_loss += loss.detach().item()
             _, predicted = outputs.max(1)
             correct += predicted.eq(labels.argmax(1)).sum().item()
             total += labels.size(0)
@@ -338,7 +338,7 @@ def clamping(dataset, model,atkmodel, train_loader,clean_test_loader,poisoned_te
             functional.reset_net(clean_model.model)
 
         train_acc = 100. * correct / total
-        # print(f"Epoch {epoch+1}/{epochs}, Loss 1: {loss1.item():.4f}, Loss 2: {c *loss2.item():.4f},Loss T: {loss.item():.4f},Training Accuracy: {train_acc:.2f}%")
+        # print(f"Epoch {epoch+1}/{epochs}, Loss 1: {loss1.item():.4f}, Loss 2: {c *loss2.item():.4f},Loss T: {loss.detach().item():.4f},Training Accuracy: {train_acc:.2f}%")
         
 
 
@@ -405,7 +405,7 @@ def mmbm(dataset, model,atkmodel, train_loader,clean_test_loader,poisoned_test_l
             loss.backward(retain_graph=True)
             optimizer.step()
 
-            total_loss += loss.item()
+            total_loss += loss.detach().item()
             _, predicted = outputs.max(1)
             correct += predicted.eq(labels.argmax(1)).sum().item()
             total += labels.size(0)
@@ -413,7 +413,7 @@ def mmbm(dataset, model,atkmodel, train_loader,clean_test_loader,poisoned_test_l
             functional.reset_net(clean_model.model)
 
         train_acc = 100. * correct / total
-        # print(f"Epoch {epoch+1}/{epochs}, Loss 1: {loss1.item():.4f}, Loss 2: {c *loss2.item():.4f},Loss T: {loss.item():.4f},Training Accuracy: {train_acc:.2f}%")
+        # print(f"Epoch {epoch+1}/{epochs}, Loss 1: {loss1.item():.4f}, Loss 2: {c *loss2.item():.4f},Loss T: {loss.detach().item():.4f},Training Accuracy: {train_acc:.2f}%")
         
 
 
@@ -467,7 +467,7 @@ def finetuning(model,atkmodel, train_loader,clean_test_loader,poisoned_test_load
 
             label = label.argmax(1)
             train_samples += label.numel()
-            train_loss += loss.item() * label.numel()
+            train_loss += loss.detach().item() * label.numel()
             train_acc += (out_fr.argmax(1) == label).float().sum().item()
 
             functional.reset_net(model)
@@ -557,7 +557,7 @@ def self_tuning(model,
             # For accuracy, we compare the argmax of the output with the argmax of pseudo-label
             label_argmax = pseudo_label.argmax(dim=1)
             train_samples += label_argmax.numel()
-            train_loss += loss.item() * label_argmax.numel()
+            train_loss += loss.detach().item() * label_argmax.numel()
             train_acc += (out_fr.argmax(dim=1) == label_argmax).float().sum().item()
 
             # Reset the spiking state if using spiking-based model
@@ -625,7 +625,7 @@ def e2e_evaluate(model, clean_model, test_loader, predict_label, criterion, devi
             loss = criterion(out_fr, label)      # label is assumed to be one-hot or something appropriate
 
             # Record stats
-            test_loss += loss.item() * label.size(0)
+            test_loss += loss.detach().item() * label.size(0)
             test_samples += label.size(0)
 
             # Convert predictions to int labels

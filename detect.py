@@ -124,13 +124,13 @@ def backdoor_detection(model, img_dim, NC, nstep, penultimate_neuron, model_name
             loss.backward(retain_graph=True)
             optimizer.step()
             if args.save_plot:
-                loss_values.append(loss.item())
+                loss_values.append(loss.detach().item())
                 res_values.append(torch.max(torch.sum((outputs * onehot_label), dim=1) \
                              - torch.max((1 - onehot_label) * outputs - 1000 * onehot_label, dim=1)[0]).item())
-            if args.early_stop and (last_loss == 0 or abs(last_loss - loss.item())/abs(last_loss)< 1e-5):
-                print(f'End at run {iter_idx}, loss {loss.item()}, last loss {last_loss}')
+            if args.early_stop and (last_loss == 0 or abs(last_loss - loss.detach().item())/abs(last_loss)< 1e-5):
+                print(f'End at run {iter_idx}, loss {loss.detach().item()}, last loss {last_loss}')
                 break
-            last_loss = loss.item()
+            last_loss = loss.detach().item()
         if args.save_plot:
             save_loss_plot(t, loss_values, res_values, model_name)
         res.append(torch.max(torch.sum((outputs * onehot_label), dim=1) \

@@ -153,7 +153,7 @@ def train(model, train_loader, optimizer, criterion, device, args, scaler=None, 
         # print(penalty)
         # Total loss
         loss = base_loss + tmp_penalty_weight * penalty
-        # print(f"Loss: {loss.item()}, Base loss: {base_loss.item()}, Penalty: {penalty}")
+        # print(f"Loss: {loss.detach().item()}, Base loss: {base_loss.detach().item()}, Penalty: {penalty}")
         
         loss.backward()
         optimizer.step()
@@ -161,7 +161,7 @@ def train(model, train_loader, optimizer, criterion, device, args, scaler=None, 
         # Update metrics
         label = label.argmax(1)
         train_samples += label.numel()
-        train_loss += loss.item() * label.numel()
+        train_loss += loss.detach().item() * label.numel()
         train_acc += (out_fr.argmax(1) == label).float().sum().item()
 
         # Reset the model state

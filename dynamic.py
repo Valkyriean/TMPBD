@@ -121,7 +121,7 @@ def train(args, atkmodel, tgtmodel, clsmodel, device, train_loader,
         loss_clean = criterion(output, label)
         bk_loss = criterion(output_bk, bk_label)
         loss = loss_clean * args.alpha + bk_loss * (1 - args.alpha)
-        loss_list.append(loss.item())
+        loss_list.append(loss.detach().item())
         clear_grad(clsmodel)
 
         paragrads = torch.autograd.grad(loss, clsmodel.parameters(),
@@ -269,7 +269,7 @@ def test(args, atkmodel, scratchmodel, device,
             loss = criterion(output, label)
             label = label.argmax(1)
             test_samples += label.numel()
-            test_loss += loss.item() * label.numel()
+            test_loss += loss.detach().item() * label.numel()
             test_acc += (output.argmax(1) == label).float().sum().item()
             functional.reset_net(scratchmodel)
 
@@ -281,7 +281,7 @@ def test(args, atkmodel, scratchmodel, device,
             bk_output = scratchmodel(atkdata).mean(0)
             loss = criterion(bk_output, bk_label)
 
-            test_bk_loss += loss.item() * label.numel()
+            test_bk_loss += loss.detach().item() * label.numel()
             test_bk_acc += (bk_output.argmax(1) ==
                             args.trigger_label).float().sum().item()
             functional.reset_net(atkmodel)
@@ -328,7 +328,7 @@ def evaluate(model, test_loader, criterion, device):
 
             label = label.argmax(1)
             test_samples += label.numel()
-            test_loss += loss.item() * label.numel()
+            test_loss += loss.detach().item() * label.numel()
             test_acc += (out_fr.argmax(1) == label).float().sum().item()
 
             functional.reset_net(model)

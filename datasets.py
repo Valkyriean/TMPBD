@@ -51,8 +51,8 @@ def get_dataset(dataset, frames_number, data_dir):
                             split_by='number', frames_number=frames_number)
 
         if os.path.exists(path_train) and os.path.exists(path_test):
-            train_set = torch.load(path_train)
-            test_set = torch.load(path_test)
+            train_set = torch.load(path_train, weights_only=False)
+            test_set = torch.load(path_test, weights_only=False)
         else:
             train_set, test_set = split_to_train_test_set(
                 origin_dataset=dataset, train_ratio=0.9, num_classes=101)
